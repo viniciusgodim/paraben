@@ -1,0 +1,27 @@
+\documentclass[dvipsnames]{standalone}
+\usepackage{chemfig}
+\usepackage{xcolor}
+
+\begin{document}
+
+\setchemfig{atom sep=1.8em}
+\schemestart
+\chemfig{*6((-[@{hydroxylBondA}]H@{leftOxygenA}\charge{-60=\:}{O})=[@{aromaticBond}]@{aromaticCarbon}-=(-(=[::60]O)-[::-60]OR)-=-)}
+\arrow
+\chemfig{*6((=[@{hydroxylBondB}]H@{leftOxygenB}\charge{-45=$\scriptscriptstyle\oplus$}{O})-\charge{-90=\:,-90:4pt=$\scriptscriptstyle\ominus$}{}@{negativeCarbon}(-[:-90,1.5,,,draw=none]@{chlorine}Cl-[@{ClOBond}:180]@{HClOOxygen}O-[:-135]H)-=(-(=[::60]O)-[::-60]OR)-=-)}
+\arrow[-90]
+\chemfig{*6(\charge{30:3pt=$\scriptscriptstyle\oplus$}{}(-HO)-[@{missingDoubleBond}](-Cl)(-[@{hydrogenRingBond}:-45]@{hydrogenBottom}H-[::0,1.5,,,draw=none]@{Boron}\Charge{90=\:}{B})-=(-(=[::60]O)-[::-60]OR)-=-)}
+\arrow[180]
+\chemfig{*6((-HO)=(-Cl)-=(-(=[::60]O)-[::-60]OR)-=-)}
+\schemestop
+\chemmove[RubineRed]{
+	\draw[shorten <=3pt,shorten >=2pt](leftOxygenA).. controls +(-60:5mm) and +(-60:5mm).. (hydroxylBondA);
+	\draw[shorten <=3pt,shorten >=4pt](aromaticBond).. controls +(60:5mm) and +(90:5mm).. (aromaticCarbon);
+	\draw[shorten <=3pt](negativeCarbon).. controls +(0:5mm) and +(30:5mm).. (chlorine);
+	\draw[shorten <=3pt, shorten >= 2pt](ClOBond).. controls +(90:5mm) and +(90:5mm).. (HClOOxygen);
+	\draw[shorten <=3pt, shorten >= 2pt](hydroxylBondB).. controls +(120:5mm) and +(90:5mm).. (leftOxygenB);
+	\draw[shorten <=3pt, shorten >= 3pt](hydrogenRingBond).. controls +(30:5mm) and +(60:5mm).. (missingDoubleBond);
+	\draw(Boron).. controls +(90:5mm) and +(0:5mm).. (hydrogenBottom);
+}
+
+\end{document}
